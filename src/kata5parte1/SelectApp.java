@@ -7,10 +7,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class SelectApp {
-    // Se conecta a la BD y se devuelve un objeto Connection 
 
     private Connection connect() {
-        // SQLite connection string
         String url = "jdbc:sqlite:KATA5.db"; 
         Connection conn = null;
         try {
@@ -21,14 +19,11 @@ public class SelectApp {
         return conn;
     }
 
-
-    // Se seleccionan todos los registros de la tabla PEOPLE 
     public void selectAll(){
         String sql = "SELECT * FROM PEOPLE";
         try (Connection conn = this.connect(); 
                 Statement stmt = conn.createStatement(); 
                 ResultSet rs = stmt.executeQuery(sql)){
-                // Bucle sobre el conjunto de registros.
                 while (rs.next()) { 
                     System.out.println(rs.getInt("id") + "\t" +
                                        rs.getString("Name") + "\t" + 
